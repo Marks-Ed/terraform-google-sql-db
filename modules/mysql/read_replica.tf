@@ -60,6 +60,12 @@ resource "google_sql_database_instance" "replicas" {
     disk_type       = lookup(each.value, "disk_type", var.disk_type)
     pricing_plan    = "PER_USE"
     user_labels     = lookup(each.value, "user_labels", var.user_labels)
+    
+    maintenance_window {
+      day          = lookup(each.value, "maintenance_window_day" var.maintenance_window_day)
+      hour         = lookup(each.value, "maintenance_window_hour" var.maintenance_window_hour)
+      update_track = lookup(each.value, "maintenance_window_update_track" var.maintenance_window_update_track)
+    }
 
     dynamic "database_flags" {
       for_each = lookup(each.value, "database_flags", [])
