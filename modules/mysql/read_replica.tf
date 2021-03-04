@@ -62,9 +62,9 @@ resource "google_sql_database_instance" "replicas" {
     user_labels     = lookup(each.value, "user_labels", var.user_labels)
     
     maintenance_window {
-      day          = lookup(each.value, "maintenance_window_day" var.maintenance_window_day)
-      hour         = lookup(each.value, "maintenance_window_hour" var.maintenance_window_hour)
-      update_track = lookup(each.value, "maintenance_window_update_track" var.maintenance_window_update_track)
+      day          = lookup(each.value, "maintenance_window_day", var.maintenance_window_day)
+      hour         = lookup(each.value, "maintenance_window_hour", var.maintenance_window_hour)
+      update_track = lookup(each.value, "maintenance_window_update_track", var.maintenance_window_update_track)
     }
 
     dynamic "database_flags" {
